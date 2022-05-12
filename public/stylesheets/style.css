@@ -1,0 +1,116 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+#logo {
+  height: 20vh;
+}
+
+.status {
+  border-radius: 25px;
+  border: 2px solid #eee;
+  padding: 15px 25px;
+  margin: 15px;
+}
+
+.status h2 {
+  color: #353535;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  margin-left: 5px;
+}
+
+.status .bar-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.status .bar {
+  height: 45px;
+  width: 8px;
+  background-color: #eee;
+  margin: 0 2.5px;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+}
+.status .bar .hover {
+  position: absolute;
+  height: 125px;
+  width: 250px;
+  border: 2px solid #eee;
+  background-color: #fff;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -105%);
+  border-radius: 15px;
+  padding: 10px 20px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 100;
+}
+.status .bar:hover .hover {
+  display: flex;
+}
+.status .bar .hover p {
+  margin: 0;
+  color: #353535;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: .9rem;
+}
+.status .bar .hover p.date {
+  color: #353535;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.status .sError .hover p.statusHover {
+  color: #ff5050;
+}
+.status .sLow .hover p.delay {
+  color: #ffc250;
+}
+
+.status .s200 {
+  background-color: #71d171;
+}
+.status .sError {
+  background-color: #ff5050;
+}
+.status .sLow {
+  background-color: #ffc250;
+}
+
+.status .timeline {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.status .timeline .timebar {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 1px;
+  background-color: #eee;
+  width: 100%; 
+  z-index: 9;
+}
+.status .timeline p {
+  color: #353535;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: .8rem;
+  background-color: #fff;
+  z-index: 10;
+  padding: 0 5px;
+}

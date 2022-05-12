@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    img(src='/img/qs_logo.png', id="logo")
+    each host in hosts
+      .status
+        h2= host.url
+        .bar-content
+          - for (let i = 0; i < 60; i++)
+            if (i == 59)
+              if (host.actual.code != 200)
+                div(class='bar sError')
+                  .hover 
+                    p(class='date') Maintenant
+                    p(class='statusHover') Statut : #{host.actual.code} #{host.actual.status}
+                    p(class='delay') Ping : #{host.actual.time} ms
+                    p Server : #{host.actual.server}
+                    p Tech : #{host.actual.tech}
+              else if (host.actual.time >= 1000)
+                div(class='bar sLow')
+                  .hover 
+                    p(class='date') Maintenant
+                    p(class='statusHover') Statut : #{host.actual.code} #{host.actual.status}
+                    p(class='delay') Ping : #{host.actual.time} ms
+                    p Server : #{host.actual.server}
+                    p Tech : #{host.actual.tech}
+              else
+                div(class='bar s200')
+                  .hover 
+                    p(class='date') Maintenant
+                    p(class='statusHover') Statut : #{host.actual.code} #{host.actual.status}
+                    p(class='delay') Ping : #{host.actual.time} ms
+                    p Server : #{host.actual.server}
+                    p Tech : #{host.actual.tech}
+            else 
+              if (host.history[host.history.length - (59 - i)])
+                - var history = host.history[host.history.length - (59 - i)]
+                if (history.code != 200)
+                  div(class='bar sError')
+                    .hover 
+                      p(class='date') #{new Date(history.date).toLocaleDateString('fr-FR', {day: 'numeric', month: 'long', year: 'numeric', hour:'numeric', minute:'numeric'})}
+                      p(class='statusHover') Statut : #{history.code} #{history.status}
+                      p(class='delay') Ping : #{history.delay} ms
+                      p Server : #{history.server}
+                      p Tech : #{history.tech}
+                else if (history.delay >= 1000)
+                  div(class='bar sLow')
+                    .hover 
+                      p(class='date') #{new Date(history.date).toLocaleDateString('fr-FR', {day: 'numeric', month: 'long', year: 'numeric', hour:'numeric', minute:'numeric'})}
+                      p(class='statusHover') Statut : #{history.code} #{history.status}
+                      p(class='delay') Ping : #{history.delay} ms
+                      p Server : #{history.server}
+                      p Tech : #{history.tech}
+                else 
+                  div(class='bar s200')
+                    .hover 
+                      p(class='date') #{new Date(history.date).toLocaleDateString('fr-FR', {day: 'numeric', month: 'long', year: 'numeric', hour:'numeric', minute:'numeric'})}
+                      p(class='statusHover') Statut : #{history.code} #{history.status}
+                      p(class='delay') Ping : #{history.delay} ms
+                      p Server : #{history.server}
+                      p Tech : #{history.tech}
+              else 
+                .bar
+        .timeline 
+          p(class="startDate")= date
+          p Disponibilité #{host.dispo}%
+          p Maintenant
+          .timebar
+    script(src="/scripts/resize.js") 
