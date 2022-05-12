@@ -6,7 +6,7 @@ window.addEventListener('resize', () => {
 })
 
 function resize() {
-  if (window.innerWidth < 991) {
+  if (screen.width < 991) {
     Array.from(box).forEach((sta) => {
       const bars = Array.from(sta.querySelectorAll('.bar'))
       const date = sta.querySelector('.startDate')
@@ -16,7 +16,7 @@ function resize() {
       date.innerHTML = 'Il y a 30 jours';
     })
   }
-  if (window.innerWidth >= 991) {
+  if (screen.width >= 991) {
     Array.from(box).forEach((sta) => {
       const bars = Array.from(sta.querySelectorAll('.bar'))
       const date = sta.querySelector('.startDate')
