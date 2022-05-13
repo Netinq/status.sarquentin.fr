@@ -65,7 +65,8 @@ html
               else 
                 .bar
         .timeline 
-          p(class="startDate")= date
+          p(class="startDate")= new Date(host.history[0].date).toLocaleDateString('fr-FR', {timeZone: 'Europe/Paris', day: 'numeric', month: 'long', year: 'numeric'})
+          p(class="startDateLittle") #{host.history[host.history.length - 29] ? new Date(host.history[host.history.length - 29].date).toLocaleDateString('fr-FR', {timeZone: 'Europe/Paris', day: 'numeric', month: 'long', year: 'numeric'}) : new Date(host.history[0].date).toLocaleDateString('fr-FR', {timeZone: 'Europe/Paris', day: 'numeric', month: 'long', year: 'numeric'})}
           p Disponibilité #{host.dispo}%
           p Maintenant
           .timebar
