@@ -82,7 +82,7 @@ class Resolver {
       <br>
       <code>${json.delay >= 10000 ? '🚨': '✅' } Delay : ${JSON.stringify(json.delay)} ms</code>
       <br>
-      <p>Date : ${new Date(json.time).toLocaleDateString('fr-FR', {day: 'numeric', month: 'long', year: 'numeric', hour:'numeric', minute:'numeric'})} </p>
+      <p>Date : ${new Date(json.time).toLocaleDateString('fr-FR', {timeZone: 'Europe/Paris', day: 'numeric', month: 'long', year: 'numeric', hour:'numeric', minute:'numeric'})} </p>
       <br>`
     })
   }
