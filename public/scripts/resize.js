@@ -1,4 +1,6 @@
 const box = document.querySelectorAll('.status');
+const dateLong = (sta) => { return sta.querySelector('.startDate') }
+const dateLittle = (sta) => { return sta.querySelector('.startDateLittle')}
 resize()
 
 window.addEventListener('resize', () => {
@@ -9,11 +11,11 @@ function resize() {
   if (screen.width < 991) {
     Array.from(box).forEach((sta) => {
       const bars = Array.from(sta.querySelectorAll('.bar'))
-      const date = sta.querySelector('.startDate')
       for (let i = 0; i < 30; i++) {
         bars[i].style.display = 'none';
       }
-      date.innerHTML = 'Il y a 30 jours';
+      dateLong(sta).style.display = 'none';
+      dateLittle(sta).style.display = 'block';
     })
   }
   if (screen.width >= 991) {
@@ -23,7 +25,8 @@ function resize() {
       for (let i = 0; i < 30; i++) {
         bars[i].style.display = 'flex';
       }
-      date.innerHTML = 'Il y a 60 jours';
+      dateLong(sta).style.display = 'block';
+      dateLittle(sta).style.display = 'none';
     })
   }
 }

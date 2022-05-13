@@ -114,6 +114,9 @@ body {
   z-index: 10;
   padding: 0 5px;
 }
+.status .timeline p.startDateLittle {
+  display: none;
+}
 
 @media (max-width: 991px) {
   .status .bar {
