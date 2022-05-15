@@ -15,7 +15,7 @@ async function StatusController(req, res) {
       Status.findAll({ where: { host_id: host.id }, limit: 60, raw: true, order:  [['id', 'DESC']] })
         .then((history) => {
           json = JSON.parse(JSON.stringify(history))
-          host.history = json
+          host.history = json.reverse()
           return callback(null, host)
         })
     }).then(async (hosts) => {
