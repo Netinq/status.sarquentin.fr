@@ -12,7 +12,7 @@ async function StatusController(req, res) {
     Resolver.resolveNow(host).then((res) => { return callback(null, res) })
   }).then(async (hosts) => {
     async.map(hosts, (host, callback) => {
-      Status.findAll({ where: { host_id: host.id }, limit: 60, raw: true, })
+      Status.findAll({ where: { host_id: host.id }, limit: 60, raw: true, order:  [['id', 'DESC']] })
         .then((history) => {
           json = JSON.parse(JSON.stringify(history))
           host.history = json
