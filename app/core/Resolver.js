@@ -6,7 +6,6 @@ const mail = require("../core/mail");
 class Resolver {
   
   constructor(delay) {
-    this.resolve()
     setInterval(() => {
       this.resolve()
     }, delay);
