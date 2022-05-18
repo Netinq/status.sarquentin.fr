@@ -35,3 +35,14 @@ jobs:
               echo "runing the docker image"
               echo "Testing the nodejs  app endpoints"
               echo ${{ steps.docker_build.outputs.digest }}
+        - name: Deploy
+          uses: appleboy/ssh-action@master
+          with:
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            password: ${{ secrets.PASSWORD }}
+            script: |
+              cd statussarquentin.fr
+              docker-compose stop || docker rmi status.sarquentin.fr:latest
+              docker pull status.sarquentin.fr:latest
+              docker-compose up -d
