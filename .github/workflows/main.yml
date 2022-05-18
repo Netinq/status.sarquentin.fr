@@ -6,7 +6,7 @@ on:
     branches: [ master ]
   workflow_dispatch:
 jobs:
-  push_to_Docker_Hub:
+  Push_To_Docker:
       runs-on: ubuntu-latest
       steps:
         - name: checkout repo
@@ -35,6 +35,9 @@ jobs:
               echo "runing the docker image"
               echo "Testing the nodejs  app endpoints"
               echo ${{ steps.docker_build.outputs.digest }}
+  Deploy_To_Server:
+      runs-on: ubuntu-latest
+      steps:
         - name: Deploy
           uses: appleboy/ssh-action@master
           with:
@@ -42,7 +45,7 @@ jobs:
             username: ${{ secrets.USERNAME }}
             password: ${{ secrets.PASSWORD }}
             script: |
-              cd statussarquentin.fr
+              cd statussarquentinfr
               docker-compose stop || docker rmi status.sarquentin.fr:latest
               docker pull status.sarquentin.fr:latest
               docker-compose up -d
