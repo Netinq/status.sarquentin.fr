@@ -36,6 +36,7 @@ jobs:
               echo "Testing the nodejs  app endpoints"
               echo ${{ steps.docker_build.outputs.digest }}
   Deploy_To_Server:
+      needs: Push_To_Docker
       runs-on: ubuntu-latest
       steps:
         - name: Deploy
