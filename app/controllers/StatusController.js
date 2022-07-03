@@ -20,7 +20,7 @@ async function StatusController(req, res) {
         })
     }).then(async (hosts) => {
       async.map(hosts, (host, callback) => {
-        if (!host.history) return callback(null, host)
+        if (host.history.length <= 0) return callback(null, host)
         sequelize.query(`call get_disponibility(${host.id})`).then((response) => {
           host.dispo = response[0].TOTAL;
           return callback(null, host)
