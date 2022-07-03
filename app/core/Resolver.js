@@ -6,7 +6,6 @@ const mail = require("../core/mail");
 class Resolver {
   
   constructor(delay) {
-    this.resolve()
     setInterval(() => {
       this.resolve()
     }, delay);
@@ -81,7 +80,7 @@ class Resolver {
       <h2>${JSON.stringify(json.url)}</h2>
       <code>${json.code != 200 ? '🚨': '✅' } Status : ${JSON.stringify(json.code)} ${JSON.stringify(json.status)}</code>
       <br>
-      <code>${json.delay >= 10000 ? '🚨': '✅' } Delay : ${JSON.stringify(json.delay)} ms</code>
+      <code>${json.delay >= 1000 ? '🚨': '✅' } Delay : ${JSON.stringify(json.delay)} ms</code>
       <br>
       <p>Date : ${new Date(json.time).toLocaleDateString('fr-FR', {timeZone: 'Europe/Paris', day: 'numeric', month: 'long', year: 'numeric', hour:'numeric', minute:'numeric'})} </p>
       <br>`
