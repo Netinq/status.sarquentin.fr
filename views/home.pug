@@ -69,7 +69,7 @@ html
           - var startDateLittle = host.history[host.history.length - 29] ? new Date(host.history[host.history.length - 29].date).toLocaleDateString('fr-FR', {timeZone: 'Europe/Paris', day: 'numeric', month: 'long', year: 'numeric'}) : startDate
           p(class="startDate")= startDate
           p(class="startDateLittle")= startDateLittle
-          p Disponibilité #{host.dispo}%
+          p #{host.dispo ? `Disponibilité ${host.dispo}%` : 'Pas de données'}
           p Maintenant
           .timebar
     p Développé par Quentin Sar
