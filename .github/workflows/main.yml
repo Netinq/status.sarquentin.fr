@@ -46,7 +46,7 @@ jobs:
             username: ${{ secrets.USERNAME }}
             password: ${{ secrets.PASSWORD }}
             script: |
-              cd statussarquentinfr
+              cd self/statussarquentinfr
               docker-compose stop || docker rmi netinq/status.sarquentin.fr:latest
               docker pull netinq/status.sarquentin.fr:latest
               docker-compose up -d

@@ -21,10 +21,15 @@ async function StatusController(req, res) {
     }).then(async (hosts) => {
       async.map(hosts, (host, callback) => {
         if (host.history.length <= 0) return callback(null, host)
-        sequelize.query(`call get_disponibility(${host.id})`).then((response) => {
-          host.dispo = response[0].TOTAL;
-          return callback(null, host)
+        // host.dispo = response[0].TOTAL;
+        let uptime = 0;
+        let downtime = 0;
+        host.history.map((status) => {
+          if (status.code == 200) uptime++
+          else downtime++
         })
+        host.dispo = Math.round(uptime / (uptime + downtime) * 100)
+        return callback(null, host)
       }).then(async (hosts) => {
         let currentTime = new Date();
         currentTime.setDate(currentTime.getDate() - 60);
