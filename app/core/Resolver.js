@@ -53,6 +53,18 @@ class Resolver {
           }
         };
         resolve(json)
+      }).on('error', () => {
+        resolve({
+          id: host.id,
+          url: host.url,
+          actual: {
+            code: 500,
+            server: '',
+            status: '',
+            tech: '',
+            time: Date.now() - start_at
+          }
+        })
       });
     });
   };
