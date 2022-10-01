@@ -6,11 +6,13 @@ const sequelize = require("../../database/connexion");
 const { Resolver } = require("../core/Resolver");
 
 async function StatusController(req, res) {
+  console.log('StatusController');
   const dbhosts = await Host.findAll({order: [['id', 'ASC']]});
-
   async.map(dbhosts, (host, callback) => {
+    console.log('MAP DBHOSTS');
     Resolver.resolveNow(host).then((res) => { return callback(null, res) })
   }).then(async (hosts) => {
+    console.log('HOST RESOLVED');
     async.map(hosts, (host, callback) => {
       Status.findAll({ where: { host_id: host.id }, limit: 60, raw: true, order:  [['id', 'DESC']] })
         .then((history) => {
