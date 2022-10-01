@@ -54,6 +54,7 @@ class Resolver {
             time: Date.now() - start_at
           }
         };
+        console.log('RESOLVED', json);
         resolve(json)
       }).on('error', () => {
         resolve({
