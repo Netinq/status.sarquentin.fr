@@ -40,7 +40,9 @@ class Resolver {
   static resolveNow = (host) => {
     return new Promise((resolve, reject) => {
       const start_at = Date.now()
+      console.log('TRYING TO RESOLVER', host.url);
       https.get({ host: host.url, headers: { 'User-Agent': 'Mozilla/5.0' } }, (res) => {
+        console.log('RESOLVED', host.url);
         const json = {
           id: host.id,
           url: host.url,
