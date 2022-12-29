@@ -1,9 +1,6 @@
-const https = require('https');
 const sequelize = require("./database/connexion");
-const Host = require('./database/models/Host')
 const express = require('express');
 var path = require('path');
-const { Resolver } = require('./app/core/Resolver');
 
 const app = express();
 sequelize.sync()
@@ -16,7 +13,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.json());
 app.use("/", require("./routes"));
-
-new Resolver(60 * 60 * 1000)
 
 module.exports = app;
